@@ -1,0 +1,118 @@
+-------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/yoga/Dropbox/0 FSU/4_2022 fall/2_applied economics/2 generate my 
+> dataset_run code/did code/DID_Ayla_0922.log
+  log type:  text
+ opened on:  22 Sep 2022, 23:02:52
+
+. clear all
+
+. set linesize 85
+
+. macro drop _all
+
+. 
+. sysuse louisana_clean_emp_with_shock_info.dta
+
+. 
+. //examine how Hurricane influence county's labor market
+. /*the independent variable include 
+> 1) affected_county_after_shock: is the interaction term of affected county* after s
+> hock
+> 2) affected county is a dummy variable equal to 1 when the county is shocked by hur
+> ricane
+> 3) after 2005q3 is a dummy variable equal to 1 if the time is after 20005 quarter t
+> hree
+> */
+. //first is the employment_number_in_quarter, the dependent variable is qtr_emp
+. 
+. reg qtr_emp affected_county_after_shock after_2005q3 affected_county year, r
+
+Linear regression                               Number of obs     =      1,280
+                                                F(4, 1275)        =      28.42
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1370
+                                                Root MSE          =     1.4e+05
+
+------------------------------------------------------------------------------------
+                   |               Robust
+           qtr_emp |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+affected_county_~k |  -12805.98   22491.43    -0.57   0.569    -56930.25    31318.29
+      after_2005q3 |  -381.5952   14046.62    -0.03   0.978    -27938.62    27175.43
+   affected_county |   125868.9    15978.7     7.88   0.000     94521.45    157216.3
+              year |   1127.008   5315.779     0.21   0.832    -9301.627    11555.64
+             _cons |   -2210650   1.07e+07    -0.21   0.836    -2.31e+07    1.87e+07
+------------------------------------------------------------------------------------
+
+. 
+. reg qtr_emp affected_county_after_shock after_2005q3 affected_county year
+
+      Source |       SS           df       MS      Number of obs   =     1,280
+-------------+----------------------------------   F(4, 1275)      =     50.62
+       Model |  3.9799e+12         4  9.9498e+11   Prob > F        =    0.0000
+    Residual |  2.5062e+13     1,275  1.9657e+10   R-squared       =    0.1370
+-------------+----------------------------------   Adj R-squared   =    0.1343
+       Total |  2.9042e+13     1,279  2.2707e+10   Root MSE        =    1.4e+05
+
+------------------------------------------------------------------------------------
+           qtr_emp |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+affected_county_~k |  -12805.98   16994.27    -0.75   0.451    -46145.78    20533.82
+      after_2005q3 |  -381.5952   15991.02    -0.02   0.981    -31753.21    30990.02
+   affected_county |   125868.9    11400.1    11.04   0.000     103503.9    148233.9
+              year |   1127.008   5306.059     0.21   0.832    -9282.559    11536.58
+             _cons |   -2210650   1.06e+07    -0.21   0.835    -2.31e+07    1.86e+07
+------------------------------------------------------------------------------------
+
+. 
+. //second  the total wages in quarter, the dependent variable is total_qtrly_wages
+. reg total_qtrly_wages affected_county_after_shock after_2005q3 affected_county year
+> , r
+
+Linear regression                               Number of obs     =      1,280
+                                                F(4, 1275)        =      30.01
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1447
+                                                Root MSE          =     4.3e+08
+
+------------------------------------------------------------------------------------
+                   |               Robust
+ total_qtrly_wages |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+affected_county_~k |   4.27e+07   7.07e+07     0.61   0.545    -9.59e+07    1.81e+08
+      after_2005q3 |  -721025.9   4.22e+07    -0.02   0.986    -8.34e+07    8.20e+07
+   affected_county |   3.57e+08   4.58e+07     7.81   0.000     2.68e+08    4.47e+08
+              year |    9779058   1.60e+07     0.61   0.542    -2.17e+07    4.13e+07
+             _cons |  -1.95e+10   3.22e+10    -0.61   0.545    -8.26e+10    4.36e+10
+------------------------------------------------------------------------------------
+
+. 
+. reg total_qtrly_wages affected_county_after_shock after_2005q3 affected_county year
+
+      Source |       SS           df       MS      Number of obs   =     1,280
+-------------+----------------------------------   F(4, 1275)      =     53.91
+       Model |  3.9613e+19         4  9.9033e+18   Prob > F        =    0.0000
+    Residual |  2.3420e+20     1,275  1.8369e+17   R-squared       =    0.1447
+-------------+----------------------------------   Adj R-squared   =    0.1420
+       Total |  2.7381e+20     1,279  2.1408e+17   Root MSE        =    4.3e+08
+
+------------------------------------------------------------------------------------
+ total_qtrly_wages |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+affected_county_~k |   4.27e+07   5.19e+07     0.82   0.411    -5.92e+07    1.45e+08
+      after_2005q3 |  -721025.9   4.89e+07    -0.01   0.988    -9.66e+07    9.52e+07
+   affected_county |   3.57e+08   3.48e+07    10.25   0.000     2.89e+08    4.26e+08
+              year |    9779058   1.62e+07     0.60   0.547    -2.20e+07    4.16e+07
+             _cons |  -1.95e+10   3.25e+10    -0.60   0.549    -8.32e+10    4.43e+10
+------------------------------------------------------------------------------------
+
+. 
+. /* becasue the interaction term (i.e., affected_county_after_shock) is not statisti
+> cally significant,
+> my assumption that hurricane in 2005 heavily shocked the employment number and tota
+> l wages are not supported.
+> */
+. 
+end of do-file
+
