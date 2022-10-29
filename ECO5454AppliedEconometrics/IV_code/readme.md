@@ -10,7 +10,9 @@ I would like to see how vacancy rate of office building influences the sale tran
 
 the data file is **31_6_office_covid_2018-2021_include_us_florida_covid.dta**
 
-the code file for stata is **IVcode**
+the code file for stata is **stata_IV code Ayla 1028**
+
+the log file from stata is **IVregression_1028.log**
 
 
 
