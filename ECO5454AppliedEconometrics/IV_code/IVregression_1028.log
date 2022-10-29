@@ -1,0 +1,82 @@
+-------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/yoga/Dropbox/0 FSU/4_2022 fall/2_applied economics/2 generate my 
+> dataset_run code/iv code/IVregression_1028.log
+  log type:  text
+ opened on:  28 Oct 2022, 23:03:00
+
+. clear all
+
+. set linesize 85
+
+. macro drop _all
+
+. 
+. 
+. 
+. //use office file
+. cls
+
+. clear 
+
+. sysuse 31_6_office_covid_2018-2021_include_us_florida_covid.dta
+
+. 
+. // the first stage regression, check whether stay at home order (IV) has a statisti
+> cally significant influence on vacancy rate (endogeneous variable).
+. // Here I add quarter dummy variables to control the variation across quarters.
+. // the coefficient here is the beta 1 we talked in the class.
+. reg vacancyrate percentage_stayathome q2 q3 q4
+
+      Source |       SS           df       MS      Number of obs   =       384
+-------------+----------------------------------   F(4, 379)       =      3.07
+       Model |  .005400118         4  .001350029   Prob > F        =    0.0164
+    Residual |  .166468993       379  .000439232   R-squared       =    0.0314
+-------------+----------------------------------   Adj R-squared   =    0.0212
+       Total |  .171869111       383  .000448744   Root MSE        =    .02096
+
+------------------------------------------------------------------------------------
+       vacancyrate |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+percentage_staya~e |   .0001784   .0000511     3.49   0.001     .0000778    .0002789
+                q2 |  -.0004812   .0030442    -0.16   0.874    -.0064668    .0055044
+                q3 |  -.0000658   .0030389    -0.02   0.983     -.006041    .0059094
+                q4 |  -.0006755   .0030363    -0.22   0.824    -.0066457    .0052946
+             _cons |   .0612561   .0021392    28.64   0.000     .0570499    .0654623
+------------------------------------------------------------------------------------
+
+. 
+. // the reduced form of regression, I examine the influence of IV (i.e., stay at hom
+> e order) on sales volume transactions of office building (dependent variable).
+. // here the control variables are the same as the first stage. That is the quarter'
+> s dummy variable
+. // the coefficient here is the beta 3 we talked in the class.
+. reg salesvolumetransactions percentage_stayathome q2 q3 q4
+
+      Source |       SS           df       MS      Number of obs   =       382
+-------------+----------------------------------   F(4, 377)       =      1.55
+       Model |  12411.0408         4   3102.7602   Prob > F        =    0.1860
+    Residual |   752764.92       377  1996.72393   R-squared       =    0.0162
+-------------+----------------------------------   Adj R-squared   =    0.0058
+       Total |  765175.961       381  2008.33585   Root MSE        =    44.685
+
+------------------------------------------------------------------------------------
+salesvolumetrans~s |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+percentage_staya~e |   .2417275   .1090094     2.22   0.027     .0273849    .4560701
+                q2 |    2.73396   6.524435     0.42   0.675    -10.09488     15.5628
+                q3 |   3.526775   6.513246     0.54   0.588    -9.280066    16.33362
+                q4 |   6.004635    6.50779     0.92   0.357    -6.791478    18.80075
+             _cons |   40.33743   4.609317     8.75   0.000     31.27424    49.40062
+------------------------------------------------------------------------------------
+
+. 
+. /* to get the targeted coefficient (i.e.,beta 2), we calculate beta3/beta1.
+> that is, beta2=0.2417275/ 0.0001784=1355
+> hence, I get the influence of vacancy rate on sale volume transactions is 1355.
+> */
+. 
+. 
+. 
+end of do-file
+
