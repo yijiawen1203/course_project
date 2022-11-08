@@ -14,7 +14,7 @@ the code file for stata is **stata_IV code Ayla 1028**
 
 the log file from stata is **IVregression_1028.log**
 
-
+the code sample from instructor is **IV_example.do**
 
 
 
