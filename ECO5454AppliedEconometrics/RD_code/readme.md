@@ -20,7 +20,7 @@ the log file from stata is **RDregression_1109.log**
 3 model
 ==
 
-I use metropolitan area and year fixed effect regression. The 
+I use metropolitan area and year fixed effect regression. 
 
 In my regression discontinuaty research design, the focused variable is covid, which equals to 1 when the time period is after 2020 quarter one, but equals to 0 when the time period is before or equal to 2020 quarter one.
 
