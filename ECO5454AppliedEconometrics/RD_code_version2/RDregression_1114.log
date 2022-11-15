@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/yoga/Dropbox/0 FSU/4_2022 fall/2_applied economics/2 generate my 
+> dataset_run code/RD code/RDregression_1114.log
+  log type:  text
+ opened on:  14 Nov 2022, 22:44:04
+
+. clear all
+
+. set linesize 85
+
+. macro drop _all
+
+. 
+. // install rdrobust
+. //net install rdrobust, from(https://raw.githubusercontent.com/rdpackages/rdrobust/
+> master/stata) replace
+. 
+. //use industrial file
+. cls
+
+. clear 
+
+. sysuse rd_data_industrial_peroperty.dta
+
+. 
+. //my dependent variable is  transaction volumns
+. /* my focused variable is stay at home policy, 
+> which is the percentage of how many days in a quarter that a MSA have the stay at h
+> ome 
+> policy..
+>  
+> meanwhile, I control for the number of covid cases and deaths.
+> */
+. 
+. rdrobust salesvolumetransactions ln_cases_current, c(4.6)
+Mass points detected in the running variable.
+Estimates might be unreliable due to low number of effective observations.
+
+Sharp RD estimates using local polynomial regression.
+
+    Cutoff c = 4.6 | Left of c  Right of c            Number of obs =        378
+-------------------+----------------------            BW type       =      mserd
+     Number of obs |       204         174            Kernel        = Triangular
+Eff. Number of obs |        11           9            VCE method    =         NN
+    Order est. (p) |         1           1
+    Order bias (q) |         2           2
+       BW est. (h) |     1.600       1.600
+       BW bias (b) |     3.009       3.009
+         rho (h/b) |     0.532       0.532
+        Unique obs |        14         174
+
+Outcome: salesvolumetransactions. Running variable: ln_cases_current.
+--------------------------------------------------------------------------------
+            Method |   Coef.    Std. Err.    z     P>|z|    [95% Conf. Interval]
+-------------------+------------------------------------------------------------
+      Conventional |   16.19     16.463   0.9835   0.325   -16.0758      48.4567
+            Robust |     -          -     0.6700   0.503   -24.8396      50.6454
+--------------------------------------------------------------------------------
+Estimates adjusted for mass points in the running variable.
+
+. 
+. rdrobust salesvolumetransactions ln_cases_current percentage_stayathome i.cbsacode 
+> i.timeindex, c(4.6)
+Mass points detected in the running variable.
+Estimates might be unreliable due to low number of effective observations.
+
+Sharp RD estimates using local polynomial regression.
+
+    Cutoff c = 4.6 | Left of c  Right of c            Number of obs =        378
+-------------------+----------------------            BW type       =      mserd
+     Number of obs |       204         174            Kernel        = Triangular
+Eff. Number of obs |        11           9            VCE method    =         NN
+    Order est. (p) |         1           1
+    Order bias (q) |         2           2
+       BW est. (h) |     1.600       1.600
+       BW bias (b) |     3.009       3.009
+         rho (h/b) |     0.532       0.532
+        Unique obs |        14         174
+
+Outcome: salesvolumetransactions. Running variable: ln_cases_current.
+--------------------------------------------------------------------------------
+            Method |   Coef.    Std. Err.    z     P>|z|    [95% Conf. Interval]
+-------------------+------------------------------------------------------------
+      Conventional |   16.19     16.463   0.9835   0.325   -16.0758      48.4567
+            Robust |     -          -     0.6700   0.503   -24.8396      50.6454
+--------------------------------------------------------------------------------
+Estimates adjusted for mass points in the running variable.
+
+. 
+end of do-file
+
