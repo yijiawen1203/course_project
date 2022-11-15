@@ -3,3 +3,6 @@ This file contains all the mini project that are conducted in courses, including
 
 The DiD project deals with the following research question: 
 How natuaral disaster disrupted a region's labor market in inters of employment? Using Hurricane Katrina as an example.
+
+
+The RD code reference:https://github.com/rdpackages/rdrobust
