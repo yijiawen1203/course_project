@@ -29,7 +29,7 @@ the dependent variable is the sale volume transactions.
 4 results
 ==
 
-we can see that the coefficients of covid is statistically significant and negative, which indicates that after covid, the sale volume transaction reduces dramatically due to covid.
+we can see that the coefficients of covid is statistically significant and negative, which indicates that after covid, the sale volume transaction reduces dramatically due to covid.My hypothesis is verified.
 
 
 5 rd example from instructort
@@ -37,7 +37,6 @@ we can see that the coefficients of covid is statistically significant and negat
 
 RD_example.do
 
-My hypothesis is verified.
 
 
 
