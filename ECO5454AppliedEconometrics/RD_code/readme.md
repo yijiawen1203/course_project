@@ -31,6 +31,12 @@ the dependent variable is the sale volume transactions.
 
 we can see that the coefficients of covid is statistically significant and negative, which indicates that after covid, the sale volume transaction reduces dramatically due to covid.
 
+
+5 rd example from instructort
+==
+
+RD_example.do
+
 My hypothesis is verified.
 
 
