@@ -25,3 +25,9 @@ the log file is **RDregression_1114.log**
 2) I am not sure why the result of two regression is the same. In the second regression,  I add control variables but in the first regression, I have no control variable. 
 
 3) I find the introduction of the rdrobust code (https://github.com/rdpackages/rdrobust/blob/master/stata/rdrobust.pdf), but I still don't know how to select the bandwith in empirical studies (page 2, h part).
+
+
+4 rd example from instructor
+==
+
+RD_example.do
